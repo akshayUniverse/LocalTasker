@@ -1,5 +1,5 @@
 import React from 'react';
-//import './LandingPage.css';
+import './LandingPage.css';
 import { useNavigate } from 'react-router-dom'; 
 import { Button } from 'primereact/button';
 function LandingPage() {
@@ -49,7 +49,7 @@ function LandingPage() {
       {/* About Section */}
       <section id="about" className="about">
         <h2>About Us</h2>
-        <button onClick={() => navigate('/welcome')}>Go to Lwelcome</button>
+        <button onClick={() => navigate('/welcome')}>Go to Welcome</button>
         <p>We connect local talent with people who need their expertise.</p>
       </section>
     </div>

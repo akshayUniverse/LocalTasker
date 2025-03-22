@@ -34,7 +34,7 @@ function Home() {
 }
 
 function App() {
-  return (
+  return (  
     <Router>
       <Routes>
         <Route path="/" element={<LandingPage />} />
