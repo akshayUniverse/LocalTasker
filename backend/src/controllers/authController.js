@@ -3,8 +3,32 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
 
+
 const sendOTP = async (email, otp) => {
-  // Use nodemailer to send OTP (configure SMTP in .env)
+  try {
+    // Create a transporter object using SMTP transport
+    const transporter = nodemailer.createTransport({
+      host: process.env.SMTP_HOST,  // e.g., smtp.mailtrap.io
+      port: process.env.SMTP_PORT,  // e.g., 2525
+      auth: {
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS,
+      },
+    });
+
+    const mailOptions = {
+      from: process.env.SMTP_FROM,   // e.g., no-reply@yourdomain.com
+      to: email,
+      subject: "Your OTP Code",
+      text: `Your OTP code is ${otp}. It is valid for 10 minutes.`,
+    };
+
+    const info = await transporter.sendMail(mailOptions);
+    console.log("OTP Email sent: ", info.messageId);
+  } catch (error) {
+    console.error("Error sending OTP email: ", error);
+    throw error;
+  }
 };
 
 exports.register = async (req, res) => {
@@ -18,6 +42,7 @@ exports.register = async (req, res) => {
     await sendOTP(email, otp);
     res.status(200).json({ message: "OTP sent to email" });
   } catch (error) {
+    console.error("Registration error:", error);
     res.status(500).json({ error: "Error registering user" });
   }
 };

@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Signup() {
   const [formData, setFormData] = useState({ name: "", email: "", password: "", role: "provider" });
 
+  const navigate = useNavigate();
   const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const handleSubmit = async (e) => {
@@ -11,6 +13,7 @@ function Signup() {
     try {
       await axios.post("http://localhost:5000/api/auth/register", formData);
       alert("OTP sent to email!");
+      navigate("/verify-otp", { state: { email: formData.email } });
     } catch (error) {
       alert("Signup failed");
     }

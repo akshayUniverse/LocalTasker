@@ -10,6 +10,7 @@ const userSchema = new mongoose.Schema({
   profile: {
     location: String,
     experience: String,
+    workType: String, 
     portfolioImages: [String],
     pricing: String,
   },
