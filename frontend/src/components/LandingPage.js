@@ -2,12 +2,13 @@ import React from 'react';
 import './LandingPage.css';
 import { useNavigate } from 'react-router-dom'; 
 import { Button } from 'primereact/button';
+
 function LandingPage() {
   const navigate = useNavigate();
   return (
     <div>
       {/* Navigation Bar */}
-      <Button label="Submit" aria-label="Submit"  />
+      
       <nav className="navbar">
         <div className="logo">LocalTasker</div>
         <ul className="nav-links">
@@ -15,6 +16,12 @@ function LandingPage() {
           <li><a href="#about">About</a></li>
           <li><a href="#services">Services</a></li>
         </ul>
+         {/* <button onClick={() => navigate('/Login')}>Login</button>
+      <button onClick={() => navigate('/Signup')}>Signup</button> */}
+      <div className="nav-buttons">
+      <Button label="Login" aria-label="Login" onClick={() => navigate('/login')} />
+      <Button label="Signup" aria-label="Signup" onClick={() => navigate('/signup')} />
+      </div>
       </nav>
 
       {/* Hero Section */}
@@ -24,6 +31,7 @@ function LandingPage() {
         <div className="cta-buttons">
           <button className="work-btn">Do Work</button>
           <button className="hire-btn">Get Work Done</button>
+          
         </div>
       </section>
 
