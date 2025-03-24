@@ -1,8 +1,9 @@
 // backend/src/routes/userRoutes.js
 const express = require("express");
-const { getUserProfile } = require("../controllers/userController");
+const { updateProfile, getProfileByEmail } = require("../controllers/userController");
 const router = express.Router();
 
-router.get("/profile/:id", getUserProfile);
+router.post("/updateProfile", updateProfile);
+router.get("/profileByEmail/:email", getProfileByEmail);
 
 module.exports = router;

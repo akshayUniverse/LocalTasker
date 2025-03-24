@@ -1,8 +1,11 @@
 // frontend/src/components/MultiStepForm.js
 import React, { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import axios from 'axios';
+import { useNavigate , useLocation } from 'react-router-dom';
 import * as Yup from 'yup';
 
+// Step 1: Basic Details Component
 const StepOne = ({ next, values }) => {
   return (
     <div>
@@ -15,11 +18,12 @@ const StepOne = ({ next, values }) => {
       <Field name="location" type="text" />
       <ErrorMessage name="location" component="div" />
 
-      <button type="button" onClick={() => next()}>Next</button>
+      <button type="button" onClick={next}>Next</button>
     </div>
   );
 };
 
+// Step 2: Work Details Component
 const StepTwo = ({ next, prev, values }) => {
   return (
     <div>
@@ -33,24 +37,31 @@ const StepTwo = ({ next, prev, values }) => {
       <ErrorMessage name="experience" component="div" />
 
       <button type="button" onClick={prev}>Back</button>
-      <button type="button" onClick={() => next()}>Next</button>
+      <button type="button" onClick={next}>Next</button>
     </div>
   );
 };
 
-const StepThree = ({ prev, values, setFieldValue }) => {
-  // For portfolio image upload and pricing
-  const handleImageChange = (e) => {
-    setFieldValue('portfolioImages', e.currentTarget.files);
-  };
+// Step 3: Portfolio & Pricing Component
+const StepThree = ({ prev, setFieldValue, values }) => {
+  // Optionally, you can enable the image upload logic later.
+  // const handleImageChange = (e) => {
+  //   setFieldValue('portfolioImages', e.currentTarget.files);
+  // };
 
   return (
     <div>
       <h2>Step 3: Portfolio & Pricing</h2>
+      {/*
       <label>Upload Portfolio Images:</label>
-      <input name="portfolioImages" type="file" multiple onChange={handleImageChange} />
+      <input 
+        name="portfolioImages" 
+        type="file" 
+        multiple 
+        onChange={handleImageChange} 
+      />
       <ErrorMessage name="portfolioImages" component="div" />
-
+      */}
       <label>Pricing (per visit):</label>
       <Field name="pricing" type="text" placeholder="Enter your pricing" />
       <ErrorMessage name="pricing" component="div" />
@@ -61,56 +72,55 @@ const StepThree = ({ prev, values, setFieldValue }) => {
   );
 };
 
+// Validation Schema using Yup
 const validationSchema = Yup.object({
   name: Yup.string().required('Required'),
   location: Yup.string().required('Required'),
   workType: Yup.string().required('Required'),
   experience: Yup.string().required('Required'),
   pricing: Yup.string().required('Required'),
-  // For portfolioImages, you can add custom validations as needed
+  // Add custom validation for portfolioImages if needed later
 });
 
 const MultiStepForm = () => {
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  const email = location.state?.email || "";
+  console.log("Email received in MultiStepForm:", email);
+
+
   const [step, setStep] = useState(1);
   const initialValues = {
     name: '',
     location: '',
     workType: '',
     experience: '',
-    portfolioImages: null,
+    portfolioImages: null, // For future image uploads
     pricing: '',
   };
 
   const next = () => setStep(step + 1);
   const prev = () => setStep(step - 1);
 
-
   const handleSubmit = async (values) => {
-  // Create a FormData object to send files
-  const formData = new FormData();
-  if (values.portfolioImages) {
-    for (let i = 0; i < values.portfolioImages.length; i++) {
-      formData.append('portfolioImages', values.portfolioImages[i]);
+    try {
+      // Optionally, handle file uploads if enabled; for now, we just submit form data
+      // Call the backend endpoint to update the user's profile with detailed info
+      // Here we assume an endpoint like POST /api/users/updateprofile exists
+
+      const response = await axios.post("http://localhost:5000/api/users/updateProfile", { 
+        ...values, 
+        email  // Pass email to identify the user
+      });
+      alert("Profile updated successfully!");
+      // Redirect to the profile page with the user ID or email returned from the backend
+      navigate("/profile", { state: { email } });
+    } catch (error) {
+      console.error("Error updating profile:", error);
+      alert("Error updating profile");
     }
-  }
-  // Upload images to S3
-  const uploadResponse = await axios.post('http://localhost:5000/api/upload/upload-portfolio', formData, {
-    headers: { 'Content-Type': 'multipart/form-data' },
-  });
-  // Add returned URLs to the profile data
-  const profileData = {
-    ...values,
-    portfolioImages: uploadResponse.data.fileUrls,
   };
-  // Now, call your profile update API (not shown here)
-  console.log('Profile Data:', profileData);
-};
-
-
-//   const handleSubmit = (values) => {
-//     // TODO: Call backend API to update profile info
-//     console.log('Form Submitted', values);
-//   };
 
   return (
     <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>

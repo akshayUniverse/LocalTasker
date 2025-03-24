@@ -1,21 +1,28 @@
 // frontend/src/components/ProfilePage.js
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useLocation } from 'react-router-dom';
 
-function ProfilePage({ userId }) {
+function ProfilePage() {
   const [profile, setProfile] = useState(null);
+  const location = useLocation();
+  
+  const email = location.state?.email || "";
 
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/users/profile/${userId}`);
+        const res = await axios.get(`http://localhost:5000/api/users/profileByEmail/${email}`);
         setProfile(res.data);
       } catch (error) {
         console.error("Error fetching profile", error);
       }
     };
-    fetchProfile();
-  }, [userId]);
+    if(email){
+      fetchProfile();
+    }
+
+  }, [email]);
 
   if (!profile) return <p>Loading...</p>;
 

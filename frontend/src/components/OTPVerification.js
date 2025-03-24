@@ -1,15 +1,22 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate, useLocation } from "react-router-dom";
 
 function OTPVerification() {
   const [otp, setOtp] = useState("");
-  const [email, setEmail] = useState("");
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const email = location.state?.email || "";
+  // const [email, setEmail] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       await axios.post("http://localhost:5000/api/auth/verify-otp", { email, otp });
       alert("Email verified!");
+      console.log("The step form opning",email);
+      navigate("/complete-profile", { state: { email } });
     } catch (error) {
       alert("Invalid OTP");
     }
@@ -17,8 +24,14 @@ function OTPVerification() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <input type="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
-      <input type="text" placeholder="Enter OTP" onChange={(e) => setOtp(e.target.value)} />
+      <p>Verifying for: {email}</p>
+      <input 
+        type="text" 
+        placeholder="Enter OTP" 
+        value={otp} 
+        onChange={(e) => setOtp(e.target.value)} 
+        required 
+      />
       <button type="submit">Verify OTP</button>
     </form>
   );
