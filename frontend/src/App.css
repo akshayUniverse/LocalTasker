@@ -36,3 +36,17 @@
     transform: rotate(360deg);
   }
 }
+
+.p-button {
+  margin: 0px 9px;
+  display: inline-flex
+;
+  cursor: pointer;
+  user-select: none;
+  align-items: center;
+  vertical-align: bottom;
+  text-align: center;
+  overflow: hidden;
+  position: relative;
+  border-radius: 40px;
+}
