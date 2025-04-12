@@ -2,11 +2,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
+import './ProfilePage.css'; // Import your CSS file for styling
 
 function ProfilePage() {
   const [profile, setProfile] = useState(null);
   const location = useLocation();
-  
+
   const email = location.state?.email || "";
 
   useEffect(() => {
@@ -18,7 +19,7 @@ function ProfilePage() {
         console.error("Error fetching profile", error);
       }
     };
-    if(email){
+    if (email) {
       fetchProfile();
     }
 
@@ -27,18 +28,24 @@ function ProfilePage() {
   if (!profile) return <p>Loading...</p>;
 
   return (
-    <div>
-      <h2>{profile.name}'s Profile</h2>
-      <p>Location: {profile.profile.location}</p>
-      <p>Experience: {profile.profile.experience}</p>
-      <p>Pricing: {profile.profile.pricing}</p>
-      <h3>Portfolio</h3>
-      <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-        {profile.profile.portfolioImages && profile.profile.portfolioImages.map((url, index) => (
-          <img key={index} src={url} alt={`Portfolio ${index}`} style={{ width: '200px', height: 'auto' }} />
-        ))}
+    <div className="profile-container">
+      <div className="profile-header">
+        <h2>{profile.name}'s Profile</h2>
+        <p>{profile.profile.workType}</p>
       </div>
-      {/* Add ratings display if available */}
+      <div className="profile-details">
+        <p><strong>Location:</strong> {profile.profile.location}</p>
+        <p><strong>Experience:</strong> {profile.profile.experience}</p>
+        <p><strong>Pricing:</strong> ₹{profile.profile.pricing}</p>
+      </div>
+      <div className="profile-portfolio">
+        <h3>Portfolio</h3>
+        <div className="portfolio-grid">
+          {profile.profile.portfolioImages && profile.profile.portfolioImages.map((url, index) => (
+            <img key={index} src={url} alt={`Portfolio ${index}`} />
+          ))}
+        </div>
+      </div>
     </div>
   );
 }

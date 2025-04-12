@@ -1,0 +1,125 @@
+/* AuthForm.css */
+
+/* Container for the form inside the modal */
+.auth-form-container {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  /* The form itself */
+  .auth-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Heading */
+  .auth-form h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.75rem;
+    color: #333;
+  }
+  
+  /* Labels */
+  .auth-form label {
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #555;
+  }
+  
+  /* Text inputs, password, select, textarea */
+  .auth-form input,
+  .auth-form select,
+  .auth-form textarea {
+    padding: 0.75rem 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+  }
+  
+  .auth-form input:focus,
+  .auth-form select:focus,
+  .auth-form textarea:focus {
+    outline: none;
+    border-color: #007ad9;
+  }
+  
+  /* Error messages under each field */
+  .auth-form .error-message {
+    color: #d9534f;
+    font-size: 0.875rem;
+    margin-top: -0.75rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  /* Submit button */
+  .auth-form .submit-btn {
+    padding: 0.75rem;
+    background-color: #007ad9;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .auth-form .submit-btn:hover {
+    background-color: #005bb5;
+  }
+  
+  .auth-form .submit-btn:disabled {
+    background-color: #aaa;
+    cursor: not-allowed;
+  }
+  
+  /* Link to switch forms */
+  .auth-form .toggle-link {
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .auth-form .toggle-link button {
+    background: none;
+    border: none;
+    color: #007ad9;
+    cursor: pointer;
+    font-weight: 500;
+    padding: 0;
+  }
+  
+  .auth-form .toggle-link button:hover {
+    text-decoration: underline;
+  }
+  
+
+  /* === Mobile Responsive for Auth Forms === */
+@media screen and (max-width: 480px) {
+  .auth-form-container {
+    padding: 0 1rem;          /* Add side padding */
+  }
+
+  .auth-form h2 {
+    font-size: 1.5rem;        /* Slightly smaller heading */
+  }
+
+  .auth-form input,
+  .auth-form select,
+  .auth-form textarea {
+    font-size: 0.9rem;        /* Smaller text inputs */
+    padding: 0.5rem;          /* Less padding */
+  }
+
+  .auth-form .submit-btn {
+    padding: 0.6rem;          /* Slimmer button */
+    font-size: 0.95rem;
+  }
+
+  .auth-form .toggle-link {
+    font-size: 0.85rem;       /* Smaller toggle link text */
+  }
+}

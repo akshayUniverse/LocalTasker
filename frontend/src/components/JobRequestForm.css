@@ -1,0 +1,96 @@
+/* JobRequestForm.css */
+
+/* Container for the form */
+.jobrequest-container {
+    max-width: 450px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+  
+  /* Heading */
+  .jobrequest-container h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #333;
+  }
+  
+  /* Form */
+  .jobrequest-container form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Labels */
+  .jobrequest-container label {
+    margin-top: 1rem;
+    font-weight: 500;
+    color: #555;
+  }
+  
+  /* Fields */
+  .jobrequest-container input,
+  .jobrequest-container textarea {
+    margin-top: 0.5rem;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+  }
+  
+  .jobrequest-container input:focus,
+  .jobrequest-container textarea:focus {
+    outline: none;
+    border-color: #007ad9;
+  }
+  
+  /* Submit button */
+  .jobrequest-container button[type="submit"] {
+    margin-top: 1.5rem;
+    padding: 0.75rem;
+    background-color: #007ad9;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .jobrequest-container button[type="submit"]:hover {
+    background-color: #005bb5;
+  }
+  
+  /* Error text */
+  .jobrequest-container .error {
+    color: #d9534f;
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+  }
+  
+  /* Responsive */
+  @media screen and (max-width: 480px) {
+    .jobrequest-container {
+      margin: 1rem;
+      padding: 1rem;
+    }
+  
+    .jobrequest-container h2 {
+      font-size: 1.5rem;
+    }
+  
+    .jobrequest-container input,
+    .jobrequest-container textarea {
+      font-size: 0.9rem;
+      padding: 0.5rem;
+    }
+  
+    .jobrequest-container button[type="submit"] {
+      font-size: 0.95rem;
+      padding: 0.6rem;
+    }
+  }
+  

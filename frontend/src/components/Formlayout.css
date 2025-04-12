@@ -1,0 +1,17 @@
+/* FormLayout.css */
+
+body {
+    background-color: #d2a480;
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  .form-container {
+    background-color: #ffffff;
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  

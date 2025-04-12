@@ -1,0 +1,83 @@
+/* ProfilePage.css */
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 6rem auto;
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.profile-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.profile-header h2 {
+    font-size: 28px;
+    color: #333333;
+    margin-bottom: 10px;
+}
+
+.profile-header p {
+    font-size: 16px;
+    color: #666666;
+}
+
+.profile-details {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.profile-details p {
+    font-size: 16px;
+    color: #444444;
+    line-height: 1.6;
+}
+
+.profile-portfolio {
+    margin-top: 20px;
+}
+
+.profile-portfolio h3 {
+    font-size: 22px;
+    color: #333333;
+    margin-bottom: 15px;
+}
+
+.portfolio-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.portfolio-grid img {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.portfolio-grid img:hover {
+    transform: scale(1.05);
+}
+
+@media (max-width: 600px) {
+    .profile-container {
+        padding: 15px;
+    }
+
+    .portfolio-grid {
+        justify-content: center;
+    }
+}

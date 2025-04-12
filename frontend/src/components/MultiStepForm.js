@@ -2,23 +2,25 @@
 import React, { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import axios from 'axios';
-import { useNavigate , useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import * as Yup from 'yup';
+import './MultiStepForm.css'; // Import your CSS file for styling
 
 // Step 1: Basic Details Component
 const StepOne = ({ next, values }) => {
   return (
     <div>
       <h2>Step 1: Basic Details</h2>
+
       <label>Name:</label>
       <Field name="name" type="text" />
       <ErrorMessage name="name" component="div" />
-      
+
       <label>Location:</label>
       <Field name="location" type="text" />
       <ErrorMessage name="location" component="div" />
 
-      <button type="button" onClick={next}>Next</button>
+      <button type="button" className="next-button" onClick={next}>Next</button>
     </div>
   );
 };
@@ -36,8 +38,11 @@ const StepTwo = ({ next, prev, values }) => {
       <Field name="experience" type="text" placeholder="Years of experience" />
       <ErrorMessage name="experience" component="div" />
 
-      <button type="button" onClick={prev}>Back</button>
-      <button type="button" onClick={next}>Next</button>
+      <div className="button-group">
+        <button type="button"  onClick={prev}>Back</button>
+        <button type="button"  onClick={next}>Next</button>
+      </div>
+
     </div>
   );
 };
@@ -66,8 +71,10 @@ const StepThree = ({ prev, setFieldValue, values }) => {
       <Field name="pricing" type="text" placeholder="Enter your pricing" />
       <ErrorMessage name="pricing" component="div" />
 
-      <button type="button" onClick={prev}>Back</button>
-      <button type="submit">Submit</button>
+      <div class="button-group">
+        <button type="button" onClick={prev}>Back</button>
+        <button type="submit">Submit</button>
+      </div>
     </div>
   );
 };
@@ -109,8 +116,8 @@ const MultiStepForm = () => {
       // Call the backend endpoint to update the user's profile with detailed info
       // Here we assume an endpoint like POST /api/users/updateprofile exists
 
-      const response = await axios.post("http://localhost:5000/api/users/updateProfile", { 
-        ...values, 
+      const response = await axios.post("http://localhost:5000/api/users/updateProfile", {
+        ...values,
         email  // Pass email to identify the user
       });
       alert("Profile updated successfully!");
@@ -123,15 +130,17 @@ const MultiStepForm = () => {
   };
 
   return (
-    <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
-      {({ setFieldValue, values }) => (
-        <Form>
-          {step === 1 && <StepOne next={next} values={values} />}
-          {step === 2 && <StepTwo next={next} prev={prev} values={values} />}
-          {step === 3 && <StepThree prev={prev} values={values} setFieldValue={setFieldValue} />}
-        </Form>
-      )}
-    </Formik>
+    <div className="multistep-container">
+      <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
+        {({ setFieldValue, values }) => (
+          <Form>
+            {step === 1 && <StepOne next={next} values={values} />}
+            {step === 2 && <StepTwo next={next} prev={prev} values={values} />}
+            {step === 3 && <StepThree prev={prev} values={values} setFieldValue={setFieldValue} />}
+          </Form>
+        )}
+      </Formik>
+    </div>
   );
 };
 

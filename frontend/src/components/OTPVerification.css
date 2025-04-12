@@ -1,0 +1,70 @@
+/* OTPVerification.css */
+
+.otp-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: #f0f2f5;
+    padding: 20px;
+  }
+  
+  .otp-container form {
+    background: #ffffff;
+    padding: 30px 25px;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+  }
+  
+  .otp-container p {
+    margin-bottom: 20px;
+    font-size: 16px;
+    color: #333333;
+  }
+  
+  .otp-container input[type="text"] {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    border: 1px solid #cccccc;
+    border-radius: 6px;
+    transition: border-color 0.3s ease;
+  }
+  
+  .otp-container input[type="text"]:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  
+  .otp-container button {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .otp-container button:hover {
+    background-color: #0056b3;
+  }
+  
+  @media (max-width: 480px) {
+    .otp-container form {
+      padding: 25px 20px;
+    }
+  
+    .otp-container input[type="text"],
+    .otp-container button {
+      font-size: 14px;
+      padding: 10px 12px;
+    }
+  }
+  

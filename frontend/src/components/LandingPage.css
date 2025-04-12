@@ -1,132 +1,172 @@
+/* Blur effect when modal open */
+.landing-page {
+  transition: filter 0.3s ease;
+}
+.landing-page.blurred {
+  filter: blur(5px);
+}
 
-/* General Styles */
-body, html {
-    margin: 0;
-    padding: 0;
-    font-family: 'Arial', sans-serif;
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+}
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+.nav-links a {
+  text-decoration: none;
+  color: #111;
+  font-weight: bold;
+}
+.nav-buttons button {
+  margin-left: 0.5rem;
+}
+
+/* Hero Section */
+.hero-section {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  background: url('../image/hero.jpg') center/cover no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.hero-section::before {
+  content: "";
+  position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.2);
+  z-index: 0;
+}
+.hero-content, .cta-buttons {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  color: #fff;
+}
+.hero-content h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+.hero-content p {
+  font-size: 1.2rem;
+}
+.cta-buttons button {
+  margin: 1rem;
+  padding: 0.8rem 2rem;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  border-radius: 40px;
+}
+.work-btn {
+  background-color: #eda94c;
+  color: #fff;
+}
+.hire-btn {
+  background-color: #fff;
+  color: #060707;
+}
+
+/* Services Section */
+.services {
+  text-align: center;
+  padding: 2rem;
+}
+.services h2 {
+  margin-bottom: 1.5rem;
+}
+.cards {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+.card {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  padding: 2rem;
+  max-width: 300px;
+  text-align: center;
+}
+.card-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px 8px 0 0;
+  object-fit: cover;
+  margin-bottom: 1rem;
+}
+
+/* About Section */
+.about {
+  text-align: center;
+  padding: 3rem;
+  background: #ad969c;
+  color:white
+}
+
+
+
+/* === Mobile Responsive for Landing Page === */
+@media screen and (max-width: 768px) {
+  .navbar .nav-links {
+    display: none;           /* Hide nav links on tablets/smaller */
   }
-  /* LandingPage.css */
-  .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: .1rem 2.5rem;
-  }
-  
-  .nav-links {
-    list-style: none;
-    display: flex;
-    gap: 1.5rem;
-  }
-  
-  .nav-links a {
-    text-decoration: none;
-    color: #111111;
-    font-weight: bold;
-  }
-  
-  .hero {
-    text-align: center;
-    padding: 4rem 2rem;
-    background: #FF9800;
-    color: white;
+
+  .navbar .nav-buttons {
+    margin-left: auto;       /* Align login/signup to right */
   }
 
   .hero-section {
-    position: relative;
-    width: 100%;
-    height: 300px; /* Adjust the height as needed */
-    background: url('../image/hero.jpg') center/cover no-repeat;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-  }
-  /* Use a pseudo-element for the dark overlay */
-.hero-section::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5); /* Dark overlay */
-  z-index: 0; /* Behind the content */
-}
-  .hero-content,.cta-buttons {
-    position: relative;
-    z-index: 1; /* Ensure content is above the overlay */
+    flex-direction: column;  /* Stack hero content vertically */
     text-align: center;
-    color: #fff;
-  }
-  
-  .hero-content h1 {
-    font-size: 2.5rem;
-    margin-bottom: 0.5rem;
-  }
-  
-  .hero-content p {
-    font-size: 1.2rem;
   }
 
-  .cta-buttons button {
-    margin: 1rem;
-    padding: 0.8rem 2rem;
-    border: none;
-    cursor: pointer;
+  .cta-buttons {
+    flex-direction: column;  /* Stack CTA buttons */
+    gap: 0.75rem;
+  }
+
+  .cta-buttons .work-btn,
+  .cta-buttons .hire-btn {
+    width: 100%;             /* Full width buttons */
+    padding: 0.75rem;
+  }
+
+  .services .cards {
+    flex-direction: column;  /* Stack service cards */
+    gap: 1rem;
+  }
+
+  .services .card {
+    width: 100%;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .hero-section h1 {
+    font-size: 1.5rem;       /* Smaller headline */
+  }
+
+  .hero-section p {
+    font-size: 0.9rem;       /* Smaller subtext */
+  }
+
+  .services h2,
+  .about h2 {
+    font-size: 1.25rem;      /* Adjust section headings */
+  }
+
+  .services .card h3,
+  .about p {
     font-size: 1rem;
   }
-  
-  .work-btn {
-    background-color: #eda94c;
-    color: white;
-    border-radius: 40px;
-  }
-  
-  .hire-btn {
-    background-color: white;
-    color: #060707;
-    border-radius: 40px;
-  }
-  
-  .services {
-    text-align: center;
-    padding: 2rem;
-    text-align: center;
-  }
-  
-  .services h2 {
-    margin-bottom: 1.5rem;
-  }
-  
-  .cards {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    flex-wrap: wrap;
-  }
-  
-  .card {
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 2rem;
-    max-width: 300px;
-    text-align: center;
-    overflow: hidden;
-  }
-  
-  .card-image {
-    width: 100%;
-    height: auto;  /* Maintains aspect ratio */
-    border-radius: 8px 8px 0 0;
-    object-fit: cover; /* Ensures the image covers the area without stretching */
-    margin-bottom: 15px;
-  }
-  
-  
-  .about {
-    text-align: center;
-    padding: 3rem;
-    background: #fff;
-  }
-  
+}

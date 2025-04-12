@@ -9,8 +9,8 @@ const userSchema = new mongoose.Schema({
   isVerified: { type: Boolean, default: false },
   profile: {
     location: String,
+    workType: String,
     experience: String,
-    workType: String, 
     portfolioImages: [String],
     pricing: String,
   },

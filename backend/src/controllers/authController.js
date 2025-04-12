@@ -56,7 +56,7 @@ exports.verifyOTP = async (req, res) => {
   user.isVerified = true;
   user.otp = null;
   await user.save();
-  res.json({ message: "Email verified successfully" });
+  res.json({ message: "Email verified successfully" , role: user.role });
 };
 
 exports.login = async (req, res) => {

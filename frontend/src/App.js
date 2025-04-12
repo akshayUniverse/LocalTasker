@@ -7,9 +7,10 @@ import OTPVerification from './components/OTPVerification';
 import MultiStepForm from './components/MultiStepForm';
 import ProfilePage from './components/ProfilePage';
 import './App.css';
-import LandingPage from './components/LandingPage';
+import LandingPage from './components/LandingPage'; 
 import WelcomingPage from './components/WelcomingPage';
 import Login from './components/Login';
+import JobRequestForm from './components/JobRequestForm';
 import 'primereact/resources/themes/lara-light-blue/theme.css';  // Theme (Choose any)
 import 'primereact/resources/primereact.min.css';  // Core PrimeReact styles
 import 'primeicons/primeicons.css';  // PrimeIcons for icons
@@ -42,17 +43,18 @@ import 'primereact/resources/themes/lara-light-blue/theme.css'; // Change theme 
 
 function App() {
   return (  
-    <Router>
+  
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/welcome" element={<WelcomingPage />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Login isVisible={true} onClose={() => {}} />} />
+        <Route path="/signup" element={<Signup isVisible={true} onClose={() => {}} />} />
         <Route path="/verify-otp" element={<OTPVerification />} />
         <Route path="/complete-profile" element={<MultiStepForm />} />
         <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/job-request" element={<JobRequestForm />} />
       </Routes>
-    </Router>
+    
   );
 }
 
