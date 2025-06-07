@@ -1,7 +1,6 @@
-
 // import React, { useEffect, useState } from 'react';
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Signup from './components/Signup';
 import OTPVerification from './components/OTPVerification';
 import MultiStepForm from './components/MultiStepForm';
@@ -47,24 +46,22 @@ import 'primereact/resources/themes/lara-light-blue/theme.css'; // Change theme 
 
 function App() {
   return (  
-    <Router>
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/welcome" element={<WelcomingPage />} />
-        <Route path="/login" element={<Login isVisible={true} onClose={() => {}} />} />
-        <Route path="/signup" element={<Signup isVisible={true} onClose={() => {}} />} />
-        <Route path="/verify-otp" element={<OTPVerification />} />
-        <Route path="/complete-profile" element={<MultiStepForm />} />
-        <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/job-request" element={<JobRequestForm />} />
-        
-        {/* Provider Profile Routes */}
-        <Route path="/provider/basic-details" element={<BasicDetailsForm />} />
-        <Route path="/provider/work-details" element={<WorkDetailsForm />} />
-        <Route path="/provider/portfolio-pricing" element={<PortfolioPricingForm />} />
-        <Route path="/provider/dashboard" element={<ProviderDashboard />} />
-      </Routes>
-    </Router>
+    <Routes>
+      <Route path="/" element={<LandingPage />} />
+      <Route path="/welcome" element={<WelcomingPage />} />
+      <Route path="/login" element={<Login isVisible={true} onClose={() => {}} />} />
+      <Route path="/signup" element={<Signup isVisible={true} onClose={() => {}} />} />
+      <Route path="/verify-otp" element={<OTPVerification />} />
+      <Route path="/complete-profile" element={<MultiStepForm />} />
+      <Route path="/profile" element={<ProfilePage />} />
+      <Route path="/job-request" element={<JobRequestForm />} />
+      
+      {/* Provider Profile Routes */}
+      <Route path="/provider/basic-details" element={<BasicDetailsForm />} />
+      <Route path="/provider/work-details" element={<WorkDetailsForm />} />
+      <Route path="/provider/portfolio-pricing" element={<PortfolioPricingForm />} />
+      <Route path="/provider/dashboard" element={<ProviderDashboard />} />
+    </Routes>
   );
 }
 
