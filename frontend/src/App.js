@@ -11,6 +11,10 @@ import LandingPage from './components/LandingPage';
 import WelcomingPage from './components/WelcomingPage';
 import Login from './components/Login';
 import JobRequestForm from './components/JobRequestForm';
+import BasicDetailsForm from './components/provider/BasicDetailsForm';
+import WorkDetailsForm from './components/provider/WorkDetailsForm';
+import PortfolioPricingForm from './components/provider/PortfolioPricingForm';
+import ProviderDashboard from './components/provider/ProviderDashboard';
 import 'primereact/resources/themes/lara-light-blue/theme.css';  // Theme (Choose any)
 import 'primereact/resources/primereact.min.css';  // Core PrimeReact styles
 import 'primeicons/primeicons.css';  // PrimeIcons for icons
@@ -43,7 +47,7 @@ import 'primereact/resources/themes/lara-light-blue/theme.css'; // Change theme 
 
 function App() {
   return (  
-  
+    <Router>
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/welcome" element={<WelcomingPage />} />
@@ -53,8 +57,14 @@ function App() {
         <Route path="/complete-profile" element={<MultiStepForm />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/job-request" element={<JobRequestForm />} />
+        
+        {/* Provider Profile Routes */}
+        <Route path="/provider/basic-details" element={<BasicDetailsForm />} />
+        <Route path="/provider/work-details" element={<WorkDetailsForm />} />
+        <Route path="/provider/portfolio-pricing" element={<PortfolioPricingForm />} />
+        <Route path="/provider/dashboard" element={<ProviderDashboard />} />
       </Routes>
-    
+    </Router>
   );
 }
 

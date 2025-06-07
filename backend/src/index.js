@@ -18,9 +18,23 @@ mongoose.connect(process.env.MONGODB_URI)
   console.log("Error connecting to MongoDB", error);
 });
 
-app.use("/api/auth", require("./routes/authRoutes"));
-app.use("/api/users", require("./routes/userRoutes"));
-app.use("/api/job-requests", require("./routes/jobRequestRoutes"));
+// Import routes
+const authRoutes = require('./routes/authRoutes');
+const userRoutes = require('./routes/userRoutes');
+const jobRequestRoutes = require('./routes/jobRequestRoutes');
+const providerProfileRoutes = require('./routes/providerProfileRoutes');
+const matchingRoutes = require('./routes/matchingRoutes');
+const bookingRoutes = require('./routes/bookingRoutes');
+const reviewRoutes = require('./routes/reviewRoutes');
+
+// Use routes
+app.use('/api/auth', authRoutes);
+app.use('/api/users', userRoutes);
+app.use('/api/job-requests', jobRequestRoutes);
+app.use('/api/provider-profiles', providerProfileRoutes);
+app.use('/api/matching', matchingRoutes);
+app.use('/api/bookings', bookingRoutes);
+app.use('/api/reviews', reviewRoutes);
 // app.use("/api/upload", require("./routes/uploadRoutes"));
 
 const port = process.env.PORT || 5000;
